@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Mac Beauty</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Video Background */
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Overlay Content */
+        #content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #ffd1dc; /* Light rose shade */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav .logo-container img {
+            height: 40px;
+        }
+
+        nav .logo-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b54b67; /* Deep pink for branding */
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #b54b67;
+            font-size: 16px;
+            transition: color 0.3s, opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e69da8; /* Softer pink for hover effect */
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 20px 40px;
+            text-align: center;
+            color: #fdfafb;
+        }
+
+        .contact h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact p {
+            font-size: 1.3em;
+            margin-bottom: 50px;
+            color: #fffefe;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-form, .contact-map {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        /* Form Styling */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ffd1dc;
+            background-color: #fff0f5;
+            font-size: 1.1em;
+            color: #4a4a4a;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ff80ab;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form textarea {
+            height: 180px;
+            resize: none;
+        }
+
+        .contact-form button {
+            padding: 15px 30px;
+            border: none;
+            background-color: #b54b67;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #e69da8;
+            transform: scale(1.05);
+        }
+
+        /* Map Styling */
+        .contact-map iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff5f7;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-content h2 {
+            color: #b54b67;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .close-btn {
+            padding: 12px 30px;
+            background-color: #b54b67;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #e69da8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            background-color: #ffd1dc;
+            color: #4a4a4a;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #b54b67;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="v6.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Overlay Content -->
+    <div id="content">
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Logo">
+                <span class="logo-text">Mac Beauty</span>
+            </div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h1>Contact Us</h1>
+            <p>Have any questions or want to book a session? We'd love to hear from you!</p>
+
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Your Phone Number">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Google Map -->
+                <div class="contact-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.61604154718!2d101.6911232!3d3.147774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37d7dcb18a4d%3A0x400d08f2f4b3db0!2sKuala%20Lumpur!5e0!3m2!1sen!2smy!4v1694555115369!5m2!1sen!2smy" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <h2>Message Sent!</h2>
+                <p>Thank you for contacting us. We'll get back to you soon.</p>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            &copy; <?php echo date("Y"); ?> Mac Beauty. All rights reserved.
+            <br>
+            <a href="https://www.instagram.com/zidvnismv/" target="_blank">Follow us on Instagram</a>
+        </footer>
+    </div>
+
+    <script>
+        // Show modal
+        function showModal() {
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent actual form submission
+            showModal(); // Show confirmation modal
+            e.target.reset(); // Reset the form fields
+        });
+    </script>
+</body>
+</html>

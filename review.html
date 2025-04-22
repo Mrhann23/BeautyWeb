@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Reviews</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fff5f7;
+            background-image: linear-gradient(135deg, #f9e6e6, #fdeef5);
+            color: #ffffff;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #ffd1dc; /* Light rose shade */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav .logo-container img {
+            height: 40px;
+        }
+
+        nav .logo-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b54b67; /* Deep pink for branding */
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #b54b67;
+            font-size: 16px;
+            transition: color 0.3s, opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e69da8; /* Softer pink for hover effect */
+        }
+
+        /* Header section */
+        header {
+            text-align: center;
+            padding: 100px 20px 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid #fff2f2;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #ffffff;
+        }
+
+        /* Banner Section */
+.banner {
+    background-image: url('images/br.jpeg'); /* Replace with your image path */
+    background-size: cover;  /* Ensure the image covers the entire banner */
+    background-position: center;  /* Center the image */
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+        .banner h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* Flashcard Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover .flashcard {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard .front,
+        .flashcard .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .flashcard .front {
+            background-size: cover;
+        }
+
+        .flashcard .back {
+            background: #b54b67;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* About section */
+        .about {
+            padding: 40px 20px;
+            text-align: center;
+            background: #222;
+            margin-top: 20px;
+        }
+
+        .about h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            color: #bbb;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 40px;
+            background-color: #ffd1dc;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #b54b67;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Logo">
+            <span class="logo-text">MAC Beauty</span>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Exclusive Model Reviews</h1>
+        <p>Our models that sign aggrement collabration with MAC Beauty</p>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-text">
+            <h2>PRAY FOR PALESTINE</h2>
+            <p>Explore the stunning collaborations with MAC Beauty's top models.</p>
+        </div>
+    </section>
+
+    <!-- Flashcard Gallery Section -->
+    <section class="gallery">
+        <div class="gallery-item">
+            <div class="flashcard">
+                <div class="front" style="background-image: url('images/mm6.jpg');"></div>
+                <div class="back">Zac Posen</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="flashcard">
+                <div class="front" style="background-image: url('images/mm5.jpg');"></div>
+                <div class="back">Prubuc Gurung</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="flashcard">
+                <div class="front" style="background-image: url('images/mm4.jpg');"></div>
+                <div class="back">Kendall Jenner</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="flashcard">
+                <div class="front" style="background-image: url('images/mm3.jpg');"></div>
+                <div class="back">Hailey Bieber</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="flashcard">
+                <div class="front" style="background-image: url('images/mm2.jpg');"></div>
+                <div class="back">Gigi Hadid</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="flashcard">
+               <div class="front" style="background-image: url('images/mm1.jpg');"></div>
+                <div class="back">Bella Hadid</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Our Models</h2>
+        <p>
+            We collaborate with top-tier models from all around the world. Their stunning looks and our expert photographers bring life to every frame. Whether it’s fashion, weddings, or special events, we ensure your photoshoot is unforgettable.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; <?php echo date("Y"); ?> Mac Beauty. All rights reserved.
+        <br>
+        <a href="https://instagram.com/snap4u" target="_blank">Follow us on Instagram</a>
+    </footer>
+
+</body>
+</html>

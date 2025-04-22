@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase & Booking Form</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        h1, h2 {
+            color: #4b3832;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #ff69b4, #ff85c1);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .button:hover {
+            background: linear-gradient(135deg, #ff85c1, #ff99d6);
+        }
+
+        .cart, .payment-section {
+            margin-top: 40px;
+        }
+
+        .exclusive-section {
+            background: linear-gradient(135deg, #ffe6f2, #fff0f5);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .exclusive-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .exclusive-section input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .thank-you-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+            z-index: 1000;
+        }
+
+        .success {
+            text-align: center;
+            color: green;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .error {
+            text-align: center;
+            color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-banner" id="thankYouBanner">
+        Thank you for your purchase and booking! Come again.
+    </div>
+
+    <div class="form-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>Purchase & Booking Form</h1>
+
+        <div id="errorMessages" class="error"></div>
+
+        <!-- Product Selection -->
+        <h2>Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price (RM)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product 1</td>
+                    <td>25.00</td>
+                    <td><button class="button" onclick="addToCart('Product 1', 25)">
+                        <img src="images/pc4.jpg" alt="Cart Icon"> Add to Cart
+                    </button></td>
+                </tr>
+                <tr>
+                    <td>Product 2</td>
+                    <td>30.00</td>
+                    <td><button class="button" onclick="addToCart('Product 2', 30)">
+                        <img src="images/pc1.jpg" alt="Cart Icon"> Add to Cart
+                    </button></td>
+                </tr>
+                <tr>
+                    <td>Product 3</td>
+                    <td>40.00</td>
+                    <td><button class="button" onclick="addToCart('Product 3', 40)">
+                        <img src="images/pc5.jpg" alt="Cart Icon"> Add to Cart
+                    </button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Cart Section -->
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price (RM)</th>
+                    </tr>
+                </thead>
+                <tbody id="cartList"></tbody>
+            </table>
+            <button class="button" onclick="showPaymentSection()">Proceed to Checkout</button>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment-section" id="paymentSection" style="display: none;">
+            <h2>Payment Details</h2>
+            <div class="exclusive-section">
+                <label for="paymentMethod">Select Payment Method</label>
+                <select id="paymentMethod" onchange="togglePaymentDetails()">
+                    <option value="creditCard">Credit Card</option>
+                    <option value="onlineBanking">Online Banking</option>
+                </select>
+
+                <div id="creditCardDetails">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="Enter card number">
+
+                    <label for="expiryDate">Expiry Date</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY">
+
+                    <label for="cvv">CVV</label>
+                    <input type="number" id="cvv" placeholder="CVV">
+                </div>
+
+                <div id="onlineBankingDetails" style="display: none;">
+                    <label for="bank">Select Bank</label>
+                    <select id="bank">
+                        <option>Maybank</option>
+                        <option>CIMB</option>
+                        <option>Public Bank</option>
+                    </select>
+                </div>
+            </div>
+            <button class="button" onclick="handleSubmit()">
+                <img src="images/payment-icon.png" alt="Payment Icon"> Submit Payment
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            displayCart();
+        }
+
+        function displayCart() {
+            const cartList = document.getElementById('cartList');
+            cartList.innerHTML = '';
+            cart.forEach(item => {
+                cartList.innerHTML += `<tr><td>${item.name}</td><td>${item.price.toFixed(2)}</td></tr>`;
+            });
+        }
+
+        function showPaymentSection() {
+            document.getElementById('paymentSection').style.display = 'block';
+        }
+
+        function togglePaymentDetails() {
+            const method = document.getElementById('paymentMethod').value;
+            document.getElementById('creditCardDetails').style.display = method === 'creditCard' ? '' : 'none';
+            document.getElementById('onlineBankingDetails').style.display = method === 'onlineBanking' ? '' : 'none';
+        }
+
+        function handleSubmit() {
+            const banner = document.getElementById('thankYouBanner');
+            banner.style.display = 'block';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+    </script>
+</body>
+</html>
